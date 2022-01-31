@@ -1,9 +1,9 @@
 module DansOrder.ToString where
 
-import DansOrder.Stimmung
-import DansOrder.Ton
+import DansOrder.Tuning
+import DansOrder.Tone
 
-tonToString :: Ton -> String
+tonToString :: Tone -> String
 tonToString C = "C"
 tonToString Csharp = "C#"
 tonToString D = "D"
@@ -17,5 +17,5 @@ tonToString A = "A"
 tonToString B = "B"
 tonToString H = "H"
 
-toString :: Stimmung -> String
+toString :: Tuning -> String
 toString = concatMap tonToString

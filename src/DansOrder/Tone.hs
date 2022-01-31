@@ -1,6 +1,6 @@
-module DansOrder.Ton where
+module DansOrder.Tone where
 
-data Ton
+data Tone
   = C
   | Csharp
   | D

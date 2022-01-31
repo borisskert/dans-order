@@ -1,7 +1,7 @@
 module DansOrder.DifferenceSpec where
 
 import DansOrder.Difference
-import DansOrder.Ton
+import DansOrder.Tone
 import Test.Hspec
 
 spec :: Spec

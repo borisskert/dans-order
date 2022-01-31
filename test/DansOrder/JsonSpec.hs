@@ -2,7 +2,7 @@ module DansOrder.JsonSpec where
 
 import DansOrder.Json
 import DansOrder.Sort
-import DansOrder.Ton
+import DansOrder.Tone
 import Test.Hspec
 
 spec :: Spec

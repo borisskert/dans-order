@@ -1,7 +1,7 @@
 module DansOrder.ToStringSpec where
 
 import DansOrder.ToString
-import DansOrder.Ton
+import DansOrder.Tone
 import Test.Hspec
 
 spec :: Spec

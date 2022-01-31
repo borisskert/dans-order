@@ -1,25 +1,25 @@
 module DansOrder.Sort where
 
 import DansOrder.Difference
-import DansOrder.Stimmung
+import DansOrder.Tuning
 import Data.List (groupBy, nubBy, sortBy, sortOn)
 
-sortByPivot :: Stimmung -> [Stimmung] -> [Stimmung]
+sortByPivot :: Tuning -> [Tuning] -> [Tuning]
 sortByPivot _ [x] = [x]
 sortByPivot pivot xs = pivot : sortByPivot (head sorted) sorted
   where
-    sorted = sortBy (\a b -> compare (difference pivot a) (difference pivot b)) . filter (/= pivot) $ xs :: [Stimmung]
+    sorted = sortBy (\a b -> compare (difference pivot a) (difference pivot b)) . filter (/= pivot) $ xs :: [Tuning]
 
-danSort :: [Stimmung] -> [Stimmung]
+danSort :: [Tuning] -> [Tuning]
 danSort xs = head . sortOn costs . map (`sortByPivot` xs) $ xs
 
-same :: [Stimmung] -> [Stimmung] -> Bool
+same :: [Tuning] -> [Tuning] -> Bool
 same a b = a == b || a == reverse b
 
-sameCosts :: [Stimmung] -> [Stimmung] -> Bool
+sameCosts :: [Tuning] -> [Tuning] -> Bool
 sameCosts a b = costs a == costs b
 
-dansOrders :: [Stimmung] -> [[Stimmung]]
+dansOrders :: [Tuning] -> [[Tuning]]
 dansOrders [] = []
 dansOrders xs =
   nubBy same
