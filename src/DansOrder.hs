@@ -1,6 +1,6 @@
 module DansOrder where
 
-import Data.List (sortBy, sortOn, groupBy, nubBy)
+import Data.List (groupBy, nubBy, sortBy, sortOn)
 import Data.List.Split (divvy)
 
 data Ton = C | Csharp | D | Dsharp | E | F | Fsharp | G | Gsharp | A | B | H deriving (Eq, Show)
@@ -22,6 +22,7 @@ toSharp 'C' = Csharp
 toSharp 'D' = Dsharp
 toSharp 'F' = Fsharp
 toSharp 'G' = Gsharp
+toSharp 'A' = B
 
 toStimmung :: [Char] -> Stimmung
 toStimmung [] = []
@@ -79,8 +80,8 @@ sortByPivot pivot xs = pivot : sortByPivot (head sorted) sorted
 danSort :: [Stimmung] -> [Stimmung]
 danSort xs = head . sortOn costs . map (`sortByPivot` xs) $ xs
 
-dansOrders :: [Stimmung] -> [[Stimmung]]
-dansOrders xs = nubBy (\a b -> a == b || a == reverse b) . head . groupBy (\a b -> costs a == costs b) . sortOn costs . map (`sortByPivot` xs) $ xs
+same :: [Stimmung] -> [Stimmung] -> Bool
+same a b = a == b || a == reverse b
 
-estimateDansOrder :: [String] -> [[String]]
-estimateDansOrder = map (map toString) . dansOrders . map toStimmung
+dansOrders :: [Stimmung] -> [[Stimmung]]
+dansOrders xs = nubBy same . head . groupBy (\a b -> costs a == costs b) . sortOn costs . map (`sortByPivot` xs) $ xs
