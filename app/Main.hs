@@ -1,8 +1,8 @@
 module Main where
 
-import DansOrder (dansOrders)
 import DansOrder.Args (Args, hasError, help, inputFile, inputText, readArgs)
 import DansOrder.Json (fromJson, toJson)
+import DansOrder.Sort (dansOrders)
 import Data.Maybe (fromJust, isJust)
 import GHC.Base (returnIO)
 import System.Environment (getArgs)

@@ -1,6 +1,8 @@
 module DansOrder.Json where
 
-import DansOrder (Stimmung, toStimmung, toString)
+import DansOrder.Parse
+import DansOrder.Stimmung
+import DansOrder.ToString
 import Text.JSON (Result (Error), decode)
 import Text.JSON.Generic
 
