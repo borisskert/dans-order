@@ -4,10 +4,10 @@ import DansOrder.Args (Args, hasError, help, inputFile, inputText, readArgs)
 import DansOrder.Json (fromJson, toJson)
 import DansOrder.Sort (dansOrders)
 import Data.Maybe (fromJust, isJust)
+import Debug.Trace (traceShow)
 import GHC.Base (returnIO)
 import System.Environment (getArgs)
 import System.IO
-import Text.Printf (printf)
 
 main :: IO ()
 main = do
@@ -37,12 +37,16 @@ helpText =
     ++ "  --file         Reads contents of a specified JSON file\n"
 
 sortInput :: String -> String
-sortInput = concatMap toJson . dansOrders . fromJson
+sortInput input
+  | null sorted = "[]"
+  | otherwise = concatMap toJson sorted
+  where
+    sorted = dansOrders . fromJson $ input
 
 sortFileInput :: String -> IO String
 sortFileInput filename = do
   fileContents <- readFileContents filename
-  return (concatMap toJson . dansOrders . fromJson $ fileContents)
+  return (sortInput fileContents)
 
 readFileContents :: String -> IO String
 readFileContents filename = do

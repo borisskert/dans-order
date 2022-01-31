@@ -101,7 +101,7 @@ spec = do
       ]
       `shouldBe` [[A, A, A, B, B, H], [A, A, A, B, B, B], [A, A, A, B, B, A], [A, A, A, B, A, A], [A, A, A, A, A, A], [A, A, A, Gsharp, A, A], [A, A, A, Gsharp, B, A], [A, A, A, Gsharp, B, Gsharp], [A, A, A, Gsharp, B, G]]
 
-  it "dansOrders" $ do
+  it "dansOrders: some fictive example" $ do
     dansOrders
       [ [A, A, A, B, A, A],
         [A, A, A, Gsharp, B, G],
@@ -120,5 +120,8 @@ spec = do
     dansOrders [[D, A, D, Fsharp, A, D], [E, A, D, G, H, E], [C, G, D, G, A, D], [Dsharp, B, C, G, B, D], [D, G, D, G, A, D], [Fsharp, A, D, G, H, E], [H, G, D, G, A, D], [D, A, Csharp, E, H, E], [C, G, C, G, A, D]]
       `shouldBe` [ [[Fsharp, A, D, G, H, E], [E, A, D, G, H, E], [D, A, Csharp, E, H, E], [D, A, D, Fsharp, A, D], [D, G, D, G, A, D], [C, G, D, G, A, D], [H, G, D, G, A, D], [C, G, C, G, A, D], [Dsharp, B, C, G, B, D]]
                  ]
+
+  it "dansOrders: should handle empty list" $ do
+    dansOrders [] `shouldBe` []
 
 main = hspec spec

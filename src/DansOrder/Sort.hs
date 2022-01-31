@@ -20,6 +20,7 @@ sameCosts :: [Stimmung] -> [Stimmung] -> Bool
 sameCosts a b = costs a == costs b
 
 dansOrders :: [Stimmung] -> [[Stimmung]]
+dansOrders [] = []
 dansOrders xs =
   nubBy same
     . head

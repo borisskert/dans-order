@@ -1,4 +1,4 @@
-name:                dansorder
+name:                dans-order
 version:             0.1.0.0
 github:              "borisskert/dans-order"
 license:             BSD3
@@ -20,7 +20,7 @@ library:
   source-dirs: src
 
 executables:
-  dans-order-exe:
+  dansorder:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
@@ -28,7 +28,7 @@ executables:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - dansorder
+    - dans-order
 
 tests:
   dans-order-test:
@@ -39,5 +39,5 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - dansorder
+    - dans-order
     - hspec == 2.7.10
