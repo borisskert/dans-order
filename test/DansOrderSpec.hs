@@ -222,8 +222,32 @@ spec = do
         [A, A, A, Gsharp, A, A],
         [A, A, A, B, B, B]
       ]
-      `shouldBe` [ [[A, A, A, Gsharp, B, G], [A, A, A, Gsharp, B, Gsharp], [A, A, A, Gsharp, B, A], [A, A, A, Gsharp, A, A], [A, A, A, A, A, A], [A, A, A, B, A, A], [A, A, A, B, B, A], [A, A, A, B, B, B], [A, A, A, B, B, H]],
-                   [[A, A, A, B, B, H], [A, A, A, B, B, B], [A, A, A, B, B, A], [A, A, A, B, A, A], [A, A, A, A, A, A], [A, A, A, Gsharp, A, A], [A, A, A, Gsharp, B, A], [A, A, A, Gsharp, B, Gsharp], [A, A, A, Gsharp, B, G]]
+      `shouldBe` [ [[A, A, A, Gsharp, B, G], [A, A, A, Gsharp, B, Gsharp], [A, A, A, Gsharp, B, A], [A, A, A, Gsharp, A, A], [A, A, A, A, A, A], [A, A, A, B, A, A], [A, A, A, B, B, A], [A, A, A, B, B, B], [A, A, A, B, B, H]]
                  ]
+
+  it "toString" $ do
+    toString [C, Csharp, D, Dsharp, E, F, Fsharp, G, Gsharp, A, B, H]
+      `shouldBe` "CC#DD#EFF#GG#ABH"
+
+  it "estimateDansOrder" $ do
+    estimateDansOrder
+      [ "AAABAA",
+        "AAAG#BG",
+        "AAABBA",
+        "AAAG#BG#",
+        "AAABBH",
+        "AAAG#BA",
+        "AAAAAA",
+        "AAAG#AA",
+        "AAABBB"
+      ]
+      `shouldBe` [ ["AAAG#BG", "AAAG#BG#", "AAAG#BA", "AAAG#AA", "AAAAAA", "AAABAA", "AAABBA", "AAABBB", "AAABBH"]
+                 ]
+    estimateDansOrder
+      [ "EADGHE",
+        "DADF#AD",
+        "DADGAD"
+      ]
+      `shouldBe` [["EADGHE", "DADGAD", "DADF#AD"]]
 
 main = hspec spec
