@@ -1,6 +1,9 @@
 module Main where
 
-import DansOrder
+import DansOrder.Json (fromJson, toJson)
+import System.Environment
 
 main :: IO ()
-main = undefined
+main = do
+  args <- getArgs
+  putStrLn (toJson . fromJson . head $ args)
