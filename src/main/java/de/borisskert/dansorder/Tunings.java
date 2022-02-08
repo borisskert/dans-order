@@ -11,7 +11,7 @@ public class Tunings {
     }
 
     public int costs() {
-        if(tunings.isEmpty() || tunings.tail().isEmpty()) {
+        if (tunings.isEmpty() || tunings.tail().isEmpty()) {
             return 0;
         }
 
@@ -25,7 +25,33 @@ public class Tunings {
         return first.difference(next) + nextCosts;
     }
 
-    private static Tunings of(Stream<Tuning> tunings) {
+    public Stream<Tuning> stream() {
+        return tunings;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Tunings tunings1 = (Tunings) o;
+
+        return tunings.equals(tunings1.tunings);
+    }
+
+    @Override
+    public int hashCode() {
+        return tunings.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Tunings{" +
+                "tunings=" + tunings.toList() +
+                '}';
+    }
+
+    public static Tunings of(Stream<Tuning> tunings) {
         return new Tunings(tunings);
     }
 

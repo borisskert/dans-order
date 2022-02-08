@@ -27,5 +27,6 @@ class TuningTest {
         assertThat(Tuning.from("EADGHE").difference(Tuning.from("DADF#AD"))).isEqualTo(7);
         assertThat(Tuning.from("DADF#AD").difference(Tuning.from("EADGHE"))).isEqualTo(7);
         assertThat(Tuning.from("EADGHE").difference(Tuning.from("DADGAD"))).isEqualTo(6);
+        assertThat(Tuning.from("EADGHE").difference(Tuning.from("DADFBD"))).isEqualTo(7);
     }
 }

@@ -44,7 +44,7 @@ public class Tuning {
     @Override
     public String toString() {
         return "Tuning{" +
-                "tones=" + tones +
+                "tones=" + tones.toList() +
                 '}';
     }
 
