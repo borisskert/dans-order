@@ -20,4 +20,12 @@ class TuningTest {
         assertThat(Tuning.from("DADF#AD")).isEqualTo(Tuning.from(D, A, D, Fis, A, D));
         assertThat(Tuning.from("DADFA#D")).isEqualTo(Tuning.from(D, A, D, F, B, D));
     }
+
+    @Test
+    void shouldEstimateDifferenceBetweenTunings() throws Exception {
+        assertThat(Tuning.from("EADGHE").difference(Tuning.from("EADGHE"))).isEqualTo(0);
+        assertThat(Tuning.from("EADGHE").difference(Tuning.from("DADF#AD"))).isEqualTo(7);
+        assertThat(Tuning.from("DADF#AD").difference(Tuning.from("EADGHE"))).isEqualTo(7);
+        assertThat(Tuning.from("EADGHE").difference(Tuning.from("DADGAD"))).isEqualTo(6);
+    }
 }

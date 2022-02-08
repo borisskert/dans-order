@@ -11,38 +11,19 @@ public class Tuning {
         this.tones = tones;
     }
 
-    public static Tuning from(String tones) {
-        Stream<Character> characters = CharSeq.of(tones)
-                .toStream();
-
-        Stream<Tone> parsedTones = parseTonesReversed(characters.reverse());
-
-        return new Tuning(parsedTones);
-    }
-
-    private static Stream<Tone> parseTonesReversed(Stream<Character> chars) {
-        if(chars.isEmpty()) {
-            return Stream.empty();
+    public int difference(Tuning other) {
+        if (this.tones.isEmpty() || other.tones.isEmpty()) {
+            return 0;
         }
 
-        if (chars.head() == '#') {
-            Tone tone = Tone.sharp(chars.tail().head());
-            return Stream.concat(
-                    parseTonesReversed(chars.drop(2)),
-                    Stream.of(tone)
-            );
-        } else {
-            Tone tone = Tone.normal(chars.head());
+        Tone a = this.tones.head();
+        Tone b = other.tones.head();
 
-            return Stream.concat(
-                    parseTonesReversed(chars.tail()),
-                    Stream.of(tone)
-            );
-        }
-    }
+        Tuning tail = Tuning.of(this.tones.tail());
+        Tuning otherTail = Tuning.of(other.tones.tail());
+        int nextDifference = tail.difference(otherTail);
 
-    public static Tuning from(Tone... tones) {
-        return new Tuning(Stream.of(tones));
+        return a.difference(b) + nextDifference;
     }
 
     @Override
@@ -65,5 +46,43 @@ public class Tuning {
         return "Tuning{" +
                 "tones=" + tones +
                 '}';
+    }
+
+    public static Tuning from(Tone... tones) {
+        return new Tuning(Stream.of(tones));
+    }
+
+    public static Tuning of(Stream<Tone> tones) {
+        return new Tuning(tones);
+    }
+
+    public static Tuning from(String tones) {
+        Stream<Character> characters = CharSeq.of(tones)
+                .toStream();
+
+        Stream<Tone> parsedTones = parseTonesReversed(characters.reverse());
+
+        return new Tuning(parsedTones);
+    }
+
+    private static Stream<Tone> parseTonesReversed(Stream<Character> chars) {
+        if (chars.isEmpty()) {
+            return Stream.empty();
+        }
+
+        if (chars.head() == '#') {
+            Tone tone = Tone.sharp(chars.tail().head());
+            return Stream.concat(
+                    parseTonesReversed(chars.drop(2)),
+                    Stream.of(tone)
+            );
+        } else {
+            Tone tone = Tone.normal(chars.head());
+
+            return Stream.concat(
+                    parseTonesReversed(chars.tail()),
+                    Stream.of(tone)
+            );
+        }
     }
 }

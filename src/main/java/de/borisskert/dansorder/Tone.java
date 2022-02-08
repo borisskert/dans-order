@@ -7,7 +7,7 @@ import io.vavr.collection.Stream;
 public enum Tone {
     C, Cis, D, Dis, E, F, Fis, G, Gis, A, B, H;
 
-    public int costsBetween(Tone other) {
+    public int difference(Tone other) {
         int right = ALL.cycle()
                 .dropUntil(t -> t == this)
                 .takeUntil(t -> t == other)
