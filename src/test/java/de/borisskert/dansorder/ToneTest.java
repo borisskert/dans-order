@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static de.borisskert.dansorder.Tone.B;
 import static de.borisskert.dansorder.Tone.C;
-import static de.borisskert.dansorder.Tone.Csharp;
+import static de.borisskert.dansorder.Tone.Cis;
 import static de.borisskert.dansorder.Tone.F;
 import static de.borisskert.dansorder.Tone.G;
 import static de.borisskert.dansorder.Tone.H;
@@ -15,7 +15,7 @@ class ToneTest {
     @Test
     void shouldEstimateCosts() throws Exception {
         assertThat(C.costsBetween(C)).isEqualTo(0);
-        assertThat(C.costsBetween(Csharp)).isEqualTo(1);
+        assertThat(C.costsBetween(Cis)).isEqualTo(1);
         assertThat(C.costsBetween(F)).isEqualTo(5);
         assertThat(C.costsBetween(H)).isEqualTo(1);
 
