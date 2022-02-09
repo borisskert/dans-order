@@ -127,4 +127,32 @@ spec = do
       ]
       `shouldBe` 43
 
+  it "should estimate costs of 'my' solution" $ do
+    costs
+      [ [D, A, D, Fsharp, A, D],
+        [D, G, D, G, A, D],
+        [C, G, D, G, A, D],
+        [H, G, D, G, A, D],
+        [C, G, C, G, A, D],
+        [Dsharp, B, C, G, B, D],
+        [E, A, D, G, H, E],
+        [Fsharp, A, D, G, H, E],
+        [D, A, Csharp, E, H, E]
+      ]
+      `shouldBe` 33
+
+  it "should estimate costs of Stefan's solution" $ do
+    costs
+      [ [D, A, D, Fsharp, A, D],
+        [D, G, D, G, A, D],
+        [C, G, D, G, A, D],
+        [C, G, C, G, A, D],
+        [E, A, D, G, H, E],
+        [Fsharp, A, D, G, H, E],
+        [D, A, Csharp, E, H, E],
+        [H, G, D, G, A, D],
+        [Dsharp, B, C, G, B, D]
+      ]
+      `shouldBe` 52
+
 main = hspec spec
