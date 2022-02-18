@@ -111,9 +111,6 @@ spec = do
       [[A, A, A, B, B, H], [A, A, A, B, B, B], [A, A, A, B, B, A], [A, A, A, B, A, A], [A, A, A, A, A, A], [A, A, A, Gsharp, A, A], [A, A, A, Gsharp, B, A], [A, A, A, Gsharp, B, Gsharp], [A, A, A, Gsharp, B, G]]
       `shouldBe` 8
 
-    costs [[Fsharp, A, D, G, H, E], [E, A, D, G, H, E], [D, A, Csharp, E, H, E], [D, A, D, Fsharp, A, D], [D, G, D, G, A, D], [C, G, D, G, A, D], [H, G, D, G, A, D], [C, G, C, G, A, D], [Dsharp, B, C, G, B, D]]
-      `shouldBe` 31
-
     costs
       [ [D, A, D, Fsharp, A, D],
         [H, G, D, G, A, D],
@@ -182,5 +179,9 @@ spec = do
         [Fsharp, A, D, G, H, E]
       ]
       `shouldBe` 67
+
+  it "should estimate costs of 'our perfect' solution" $ do
+    costs [[Fsharp, A, D, G, H, E], [E, A, D, G, H, E], [D, A, Csharp, E, H, E], [D, A, D, Fsharp, A, D], [D, G, D, G, A, D], [C, G, D, G, A, D], [H, G, D, G, A, D], [C, G, C, G, A, D], [Dsharp, B, C, G, B, D]]
+      `shouldBe` 31
 
 main = hspec spec
