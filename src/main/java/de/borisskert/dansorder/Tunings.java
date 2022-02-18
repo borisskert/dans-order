@@ -18,11 +18,11 @@ public class Tunings {
         Tuning first = tunings.head();
 
         Stream<Tuning> tail = tunings.tail();
-        Tuning next = tail.head();
+        Tuning head = tail.head();
 
-        int nextCosts = Tunings.of(tail).costs();
+        int tailCosts = Tunings.of(tail).costs();
 
-        return first.difference(next) + nextCosts;
+        return first.difference(head) + tailCosts;
     }
 
     public Stream<Tuning> stream() {

@@ -20,12 +20,12 @@ public enum Tone {
         return Math.min(right, left);
     }
 
-    public static Tone normal(char name) {
-        return normalTones.get(name).get();
+    public static Tone normal(char value) {
+        return normalTones.get(value).get();
     }
 
-    public static Tone sharp(char name) {
-        return sharpTones.get(name).get();
+    public static Tone sharp(char value) {
+        return sharpTones.get(value).get();
     }
 
     private static final Stream<Tone> ALL = Stream.of(Tone.values());

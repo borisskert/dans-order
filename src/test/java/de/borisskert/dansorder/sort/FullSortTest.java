@@ -28,4 +28,14 @@ class FullSortTest {
 
         assertThat(sorted).isEqualTo(from(Stream.of("AAAG#BG", "AAAG#BG#", "AAAG#BA", "AAAG#AA", "AAABAA", "AAABBA", "AAABBB", "AAABBH")));
     }
+
+    @Test
+    void shouldSortDansTunings() throws Exception {
+        Tunings tunings = from(Stream.of(
+                "DADF#AD", "EADGHE", "CGDGAD", "D#BCGBD", "DGDGAD", "F#ADGHE", "HGDGAD", "DAC#EHE", "CGCGAD"
+        ));
+        Tunings sorted = new FullSort(tunings).sort();
+
+        assertThat(sorted).isEqualTo(from(Stream.of("F#ADGHE", "EADGHE", "DAC#EHE", "DADF#AD", "DGDGAD", "CGDGAD", "HGDGAD", "CGCGAD", "D#BCGBD")));
+    }
 }

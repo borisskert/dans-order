@@ -37,4 +37,14 @@ class PivotSortTest {
 
         assertThat(sorted).isEqualTo(from(Stream.of("AAABBH", "AAABBB", "AAABBA", "AAABAA", "AAAG#AA", "AAAG#BA", "AAAG#BG#", "AAAG#BG")));
     }
+
+    @Test
+    void shouldSortDansTuningsByPivot() throws Exception {
+        Tunings tunings = from(Stream.of(
+                "DADF#AD", "EADGHE", "CGDGAD", "D#BCGBD", "DGDGAD", "F#ADGHE", "HGDGAD", "DAC#EHE", "CGCGAD"
+        ));
+        Tunings sorted = new PivotSort(tunings, Tuning.from("DADF#AD")).sort();
+
+        assertThat(sorted).isEqualTo(from(Stream.of("DADF#AD", "DGDGAD", "CGDGAD", "HGDGAD", "CGCGAD", "D#BCGBD", "EADGHE", "F#ADGHE", "DAC#EHE")));
+    }
 }

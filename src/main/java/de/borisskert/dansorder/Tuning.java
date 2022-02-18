@@ -21,9 +21,10 @@ public class Tuning {
 
         Tuning tail = Tuning.of(this.tones.tail());
         Tuning otherTail = Tuning.of(other.tones.tail());
-        int nextDifference = tail.difference(otherTail);
 
-        return a.difference(b) + nextDifference;
+        int tailDifference = tail.difference(otherTail);
+
+        return a.difference(b) + tailDifference;
     }
 
     @Override
